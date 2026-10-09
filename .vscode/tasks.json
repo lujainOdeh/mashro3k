@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start Mashrouak dev server",
+            "type": "shell",
+            "command": "corepack pnpm --filter @workspace/mashrouak dev",
+            "options": {
+                "env": {
+                    "PORT": "8080",
+                    "BASE_PATH": "/"
+                }
+            },
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "^(?!)$",
+                    "message": 0
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": "http://localhost:8080/"
+                }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        }
+    ]
+}
