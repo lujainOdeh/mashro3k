@@ -1,5 +1,5 @@
-import { Link, useLocation } from 'react-router-dom';
-import { ArrowLeftRight, Globe2, Moon, ShoppingBag, Sun } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { ArrowLeftRight, Globe2, LogOut, Moon, ShoppingBag, Sun } from 'lucide-react';
 import { useAppState } from '../context/AppState';
 
 const navByRole = {
@@ -11,6 +11,7 @@ const navByRole = {
 export function Shell({ children }: { children: React.ReactNode }) {
   const { state, patch, message } = useAppState();
   const location = useLocation();
+  const navigate = useNavigate();
   const path = location.pathname;
   const english = state.language === 'en';
   const links = navByRole[state.role as keyof typeof navByRole] ?? navByRole.customer;
@@ -31,6 +32,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             <button className="btn btn-outline" onClick={() => patch((draft) => { draft.language = draft.language === 'ar' ? 'en' : 'ar'; })} aria-label="Change language" style={{ minHeight: 38, padding: '0 11px' }}><Globe2 size={16} />{english ? 'عربي' : 'EN'}</button>
             <button className="btn btn-outline" onClick={() => patch((draft) => { draft.theme = draft.theme === 'dark' ? 'light' : 'dark'; })} aria-label="Toggle theme" style={{ minHeight: 38, width: 40, padding: 0 }}>{state.theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}</button>
             <Link to="/demo" className="btn btn-secondary role-switch" style={{ minHeight: 38, padding: '0 11px' }} aria-label="Switch demo role"><ArrowLeftRight size={15} /><span>{english ? 'Demo role' : 'تغيير الدور'}</span></Link>
+            {state.demoSession && <button className="btn btn-outline" onClick={() => { patch((draft) => { delete draft.demoSession; draft.role = 'customer'; draft.userId = 'user-customer'; draft.authSelectedRole = null; }); navigate('/login'); }} style={{ minHeight: 38, padding: '0 11px' }}><LogOut size={15} /><span>{english ? 'Sign out' : 'تسجيل الخروج'}</span></button>}
           </div>
         </div>
         <div className="mobile-nav">
