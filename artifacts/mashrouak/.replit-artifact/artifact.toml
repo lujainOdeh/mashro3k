@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Mashrouak | مشروعك"
+description = "An Arabic-first Jordanian marketplace demo connecting customers with local projects, merchants with order management, and couriers with nearby deliveries and smart delivery grouping."
+version = "1.0.0"
+id = "artifacts/mashrouak"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19087
+
+[services.development]
+run = "pnpm --filter @workspace/mashrouak run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/mashrouak", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/mashrouak/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19087"
+BASE_PATH = "/"

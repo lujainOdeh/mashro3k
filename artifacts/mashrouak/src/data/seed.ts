@@ -1,0 +1,38 @@
+export const seedState = {
+  language: 'ar',
+  theme: 'light',
+  role: 'customer',
+  userId: 'user-customer',
+  online: false,
+  courierLocation: { lat: 31.9539, lng: 35.9106, label: 'وسط البلد، عمّان' },
+  projects: [
+    { id: 'proj-olive', merchantId: 'user-merchant', name: 'دار زيتونة', category: 'مأكولات', location: 'جبل عمّان', governorate: 'عمّان', locationCoords: { lat: 31.9495, lng: 35.9244 }, description: 'منتجات أردنية مختارة من زيت الزيتون والمونة البلدية، من مزارع صغيرة إلى مائدتك.', image: 'https://images.pexels.com/photos/33783/olive-oil-salad-dressing-cooking-olive.jpg?auto=compress&cs=tinysrgb&w=900', rating: 4.9 },
+    { id: 'proj-thread', merchantId: 'user-merchant', name: 'خيط وبيت', category: 'حرف يدوية', location: 'اللويبدة', governorate: 'عمّان', locationCoords: { lat: 31.9555, lng: 35.9182 }, description: 'قطع منسوجة يدوياً بتفاصيل دافئة، صنعت بحب في عمّان.', image: 'https://images.pexels.com/photos/6044229/pexels-photo-6044229.jpeg?auto=compress&cs=tinysrgb&w=900', rating: 4.8 },
+    { id: 'proj-stone', merchantId: 'user-merchant', name: 'حجر وقمر', category: 'إكسسوارات', location: 'الصويفية', governorate: 'عمّان', locationCoords: { lat: 31.9582, lng: 35.8618 }, description: 'إكسسوارات يومية يدوية مستوحاة من ألوان الحجر والسماء.', image: 'https://images.pexels.com/photos/1191531/pexels-photo-1191531.jpeg?auto=compress&cs=tinysrgb&w=900', rating: 4.7 },
+    { id: 'proj-cup', merchantId: 'user-merchant', name: 'رشفات عمّان', category: 'مأكولات', location: 'الشميساني', governorate: 'عمّان', locationCoords: { lat: 31.9692, lng: 35.8944 }, description: 'قهوة محمصة بعناية وحلويات صغيرة لوقت أهدأ.', image: 'https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=900', rating: 4.9 },
+    { id: 'proj-home', merchantId: 'user-merchant', name: 'بيت السوسنة', category: 'منزل', location: 'تلاع العلي', governorate: 'عمّان', locationCoords: { lat: 31.9991, lng: 35.8667 }, description: 'تفاصيل منزلية بسيطة تحكي حكاية محلية.', image: 'https://images.pexels.com/photos/6316065/pexels-photo-6316065.jpeg?auto=compress&cs=tinysrgb&w=900', rating: 4.6 },
+  ],
+  products: [
+    { id: 'p-olive', projectId: 'proj-olive', name: 'زيت زيتون بكر ممتاز', category: 'مونة', description: 'عصر بارد من زيتون شمال الأردن، نكهة متوازنة ودفعة هذا الموسم.', price: 12.5, stock: 18, image: 'https://images.pexels.com/photos/33783/olive-oil-salad-dressing-cooking-olive.jpg?auto=compress&cs=tinysrgb&w=900', available: true },
+    { id: 'p-zaatar', projectId: 'proj-olive', name: 'زعتر بلدي أخضر', category: 'مونة', description: 'خلطة زعتر غنية بالسماق والسمسم من مكونات محلية.', price: 3.25, stock: 22, image: 'https://images.pexels.com/photos/4198015/pexels-photo-4198015.jpeg?auto=compress&cs=tinysrgb&w=900', available: true },
+    { id: 'p-basket', projectId: 'proj-thread', name: 'سلة قطن منسوجة', category: 'ديكور', description: 'سلة قطنية متعددة الاستخدامات منسوجة يدوياً في اللويبدة.', price: 18, stock: 7, image: 'https://images.pexels.com/photos/6044229/pexels-photo-6044229.jpeg?auto=compress&cs=tinysrgb&w=900', available: true },
+    { id: 'p-cushion', projectId: 'proj-thread', name: 'وسادة تطريز يدوي', category: 'منزل', description: 'قطن طبيعي مع تطريز هندسي مستلهم من بيوت عمّان القديمة.', price: 24.5, stock: 5, image: 'https://images.pexels.com/photos/6316065/pexels-photo-6316065.jpeg?auto=compress&cs=tinysrgb&w=900', available: true },
+    { id: 'p-earrings', projectId: 'proj-stone', name: 'أقراط حجر القمر', category: 'إكسسوارات', description: 'زوج خفيف بتصميم معاصر وحجر طبيعي بدرجات لؤلؤية.', price: 16, stock: 9, image: 'https://images.pexels.com/photos/1191531/pexels-photo-1191531.jpeg?auto=compress&cs=tinysrgb&w=900', available: true },
+    { id: 'p-bracelet', projectId: 'proj-stone', name: 'سوار خرز رملي', category: 'إكسسوارات', description: 'خرز طبيعي بألوان رمل وذهب معتق، قابل للتعديل.', price: 9.75, stock: 14, image: 'https://images.pexels.com/photos/1454171/pexels-photo-1454171.jpeg?auto=compress&cs=tinysrgb&w=900', available: true },
+    { id: 'p-coffee', projectId: 'proj-cup', name: 'قهوة بيتية محمصة', category: 'قهوة', description: 'تحميص متوسط بحبوب مختارة ونفحات شوكولاتة ومكسرات.', price: 8.5, stock: 16, image: 'https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=900', available: true },
+    { id: 'p-cookies', projectId: 'proj-cup', name: 'علبة معمول تمر', category: 'حلويات', description: 'معمول طري محشو بالتمر، يخبز يومياً بكميات صغيرة.', price: 6, stock: 11, image: 'https://images.pexels.com/photos/7248469/pexels-photo-7248469.jpeg?auto=compress&cs=tinysrgb&w=900', available: true },
+    { id: 'p-vase', projectId: 'proj-home', name: 'مزهرية خزف مطفية', category: 'منزل', description: 'قطعة خزفية مصنوعة يدوياً بلون عاجي هادئ.', price: 21, stock: 4, image: 'https://images.pexels.com/photos/6316065/pexels-photo-6316065.jpeg?auto=compress&cs=tinysrgb&w=900', available: true },
+    { id: 'p-candle', projectId: 'proj-home', name: 'شمعة ياسمين', category: 'منزل', description: 'شمع نباتي برائحة ياسمين خفيفة، صب يدوي في عمّان.', price: 7.5, stock: 13, image: 'https://images.pexels.com/photos/4207892/pexels-photo-4207892.jpeg?auto=compress&cs=tinysrgb&w=900', available: true },
+  ],
+  users: [
+    { id: 'user-customer', name: 'ليان حداد', phone: '079 555 0132', email: 'layan@example.com' },
+    { id: 'user-merchant', name: 'سارة الخطيب', phone: '079 555 0188', email: 'sara@example.com' },
+    { id: 'user-courier', name: 'عمر العبدلي', phone: '079 555 0119', email: 'omar@example.com' },
+  ],
+  cart: [],
+  orders: [
+    { id: 'MSH-24081', customerId: 'user-customer', merchantId: 'user-merchant', projectId: 'proj-olive', items: [{ productId: 'p-zaatar', name: 'زعتر بلدي أخضر', quantity: 2, price: 3.25 }], subtotal: 6.5, deliveryFee: 2.25, total: 8.75, status: 'ready', createdAt: '2025-06-13T10:30:00.000Z', address: { name: 'ليان حداد', phone: '079 555 0132', governorate: 'عمّان', city: 'جبل عمّان', street: 'شارع الرينبو، بناية ٢٢', instructions: 'الطابق الثالث', lat: 31.9518, lng: 35.9221 }, courierId: null, deliveryStage: null, groupId: null },
+    { id: 'MSH-24063', customerId: 'user-customer', merchantId: 'user-merchant', projectId: 'proj-thread', items: [{ productId: 'p-basket', name: 'سلة قطن منسوجة', quantity: 1, price: 18 }], subtotal: 18, deliveryFee: 2.5, total: 20.5, status: 'preparing', createdAt: '2025-06-12T08:15:00.000Z', address: { name: 'ليان حداد', phone: '079 555 0132', governorate: 'عمّان', city: 'جبل اللويبدة', street: 'شارع باريس، بناية ٩', instructions: '', lat: 31.9555, lng: 35.9182 }, courierId: null, deliveryStage: null, groupId: null },
+  ],
+  groups: [],
+};
