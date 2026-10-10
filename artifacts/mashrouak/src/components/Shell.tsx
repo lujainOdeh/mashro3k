@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeftRight, Globe2, LogOut, Menu, Moon, ShoppingBag, Sun } from 'lucide-react';
 import { useAppState } from '../context/AppState';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
+import { LocalizedContent } from '../lib/localization';
 
 const navByRole = {
   customer: [['/customer', 'الرئيسية', 'Home'], ['/projects', 'المشاريع', 'Projects'], ['/orders', 'طلباتي', 'My orders'], ['/profile', 'حسابي', 'Profile']],
@@ -32,7 +33,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           </nav>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             {state.role === 'customer' && <Link to="/cart" className="btn btn-outline" aria-label={english ? `Cart, ${cartCount} items` : `السلة، ${cartCount} منتجات`} style={{ padding: '0 11px', minHeight: 38 }}><ShoppingBag size={17} /><span>{cartCount}</span></Link>}
-            <button className="btn btn-outline header-utility" onClick={() => patch((draft) => { draft.language = draft.language === 'ar' ? 'en' : 'ar'; })} aria-label="Change language" style={{ minHeight: 38, padding: '0 11px' }}><Globe2 size={16} />{english ? 'عربي' : 'EN'}</button>
+            <button className="btn btn-outline header-utility" onClick={() => patch((draft) => { draft.language = draft.language === 'ar' ? 'en' : 'ar'; })} aria-label="Change language" style={{ minHeight: 38, padding: '0 11px' }}><Globe2 size={16} />{english ? 'Arabic' : 'EN'}</button>
             <button className="btn btn-outline header-utility" onClick={() => patch((draft) => { draft.theme = draft.theme === 'dark' ? 'light' : 'dark'; })} aria-label="Toggle theme" style={{ minHeight: 38, width: 40, padding: 0 }}>{state.theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}</button>
             <Link to="/demo" className="btn btn-secondary role-switch header-utility" style={{ minHeight: 38, padding: '0 11px' }} aria-label="Switch demo role"><ArrowLeftRight size={15} /><span>{english ? 'Demo role' : 'تغيير الدور'}</span></Link>
             {state.demoSession && <button className="btn btn-outline header-utility" onClick={() => { patch((draft) => { delete draft.demoSession; draft.role = 'customer'; draft.userId = 'user-customer'; draft.authSelectedRole = null; }); navigate('/login'); }} style={{ minHeight: 38, padding: '0 11px' }}><LogOut size={15} /><span>{english ? 'Sign out' : 'تسجيل الخروج'}</span></button>}
@@ -65,7 +66,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
                   {state.role === 'customer' && <Link to="/cart" aria-current={path === '/cart' ? 'page' : undefined} onClick={() => setMenuOpen(false)} className={`drawer-nav-link${path === '/cart' ? ' is-active' : ''}`}><ShoppingBag size={17} />{english ? 'Cart' : 'السلة'}<span className="drawer-cart-count">{cartCount}</span></Link>}
                 </nav>
                 <div className="drawer-actions">
-                  <button className="btn btn-outline" onClick={() => patch((draft) => { draft.language = draft.language === 'ar' ? 'en' : 'ar'; })}><Globe2 size={16} />{english ? 'عربي' : 'English'}</button>
+                  <button className="btn btn-outline" onClick={() => patch((draft) => { draft.language = draft.language === 'ar' ? 'en' : 'ar'; })}><Globe2 size={16} />{english ? 'Arabic' : 'English'}</button>
                   <button className="btn btn-outline" onClick={() => patch((draft) => { draft.theme = draft.theme === 'dark' ? 'light' : 'dark'; })}>{state.theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}{english ? 'Change theme' : 'تغيير المظهر'}</button>
                   <Link to="/demo" onClick={() => setMenuOpen(false)} className="btn btn-secondary"><ArrowLeftRight size={15} />{english ? 'Demo role' : 'تغيير الدور'}</Link>
                   {state.demoSession && <button className="btn btn-outline" onClick={() => { setMenuOpen(false); patch((draft) => { delete draft.demoSession; draft.role = 'customer'; draft.userId = 'user-customer'; draft.authSelectedRole = null; }); navigate('/login'); }}><LogOut size={15} />{english ? 'Sign out' : 'تسجيل الخروج'}</button>}
@@ -75,9 +76,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </header>
-      <main>{children}</main>
+      <main><LocalizedContent language={state.language}>{children}</LocalizedContent></main>
       <footer className="page-wrap" style={{ padding: '36px 0', color: 'var(--ink-muted)', display: 'flex', justifyContent: 'space-between', gap: 15, borderTop: '1px solid var(--line)', marginTop: 60, fontSize: 13 }}>
-        <span>مشروعك · {english ? 'Local talent, closer to home.' : 'مشاريع محلية، أقرب إليك.'}</span>
+        <span>{english ? 'Mashrouak · Local talent, closer to home.' : 'مشروعك · مشاريع محلية، أقرب إليك.'}</span>
         <span>{english ? 'Demo experience · No real payments or GPS' : 'نسخة تجريبية · لا مدفوعات أو تتبع GPS حقيقي'}</span>
       </footer>
       {message && <div className="toast-stack" role="status"><div className="toast-item">{message}</div></div>}

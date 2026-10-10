@@ -57,6 +57,49 @@ Open <http://localhost:8080>. The root `dev` script starts only `@workspace/mash
 
 The normal setup does not need a `.env` file. The repository includes [.env.example](.env.example) as a reference for optional API/database settings; the project does not load `.env` files through a dotenv package, so set variables in the shell when needed.
 
+## Preview the app in a simulated mobile browser
+
+Mashro3ak is a React + Vite web app, so it runs in a browser. The repository includes a VS Code Chrome launch configuration and a task that starts the development server on port `8080`.
+
+### Step 1: Open the project
+
+1. Open the repository folder (`mashro3k`) in Visual Studio Code.
+2. In the VS Code terminal, install dependencies if they are not already installed:
+
+   ```powershell
+   corepack enable pnpm
+   corepack pnpm install
+   ```
+
+### Step 2: Start the app in Chrome
+
+1. In VS Code, open **Run and Debug** from the sidebar, or choose **Run > Start Debugging** from the menu.
+2. Select **Launch Chrome against localhost** if VS Code asks which configuration to use.
+3. Start debugging. The configuration runs the **Start Mashrouak dev server** task and opens `http://localhost:8080` in Chrome.
+
+The checked-in Chrome debugger configuration is in `.vscode/launch.json`; its startup task is in `.vscode/tasks.json`. If VS Code reports that it does not have a Chrome debugger, use the terminal alternative below and open the address yourself:
+
+```powershell
+corepack pnpm dev
+```
+
+Then go to <http://localhost:8080> in Chrome.
+
+### Step 3: Turn on mobile device simulation
+
+1. In Chrome, right-click the page and choose **Inspect** to open DevTools.
+2. Click the **Toggle device toolbar** icon, or press `Ctrl+Shift+M` on Windows.
+3. Open the device dropdown in the toolbar and choose a phone, such as an iPhone or Google Pixel.
+4. Adjust the viewport size or zoom if needed.
+
+### Step 4: Try the app
+
+1. Open `/demo` and choose a customer, merchant, or courier demo role.
+2. Try the navigation menu, language and theme controls, buttons, forms, and other features for that role.
+3. Change the selected device or viewport size to check how the layout responds.
+
+The frontend demo runs without the optional API or a database. Map tiles and some product images load from external services, so they need an internet connection. Checkout may request browser geolocation only if you choose the location button and grant permission. Device toolbar mode simulates a viewport; it does not replace testing on an actual phone or make a non-responsive interface responsive by itself.
+
 ### Demo access
 
 - Visit `/demo` and select **customer**, **merchant**, or **courier** to enter the corresponding seeded role.

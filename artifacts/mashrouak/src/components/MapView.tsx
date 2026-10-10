@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { MapContainer, Marker, TileLayer, useMapEvents, Popup, Circle } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { useAppState } from '../context/AppState';
+import { LocalizedContent } from '../lib/localization';
 
 const icon = (tone: string) => L.divIcon({ className: '', html: `<div style="width:18px;height:18px;border-radius:50%;background:${tone};border:3px solid white;box-shadow:0 2px 8px #172b4d66"></div>`, iconSize: [24, 24], iconAnchor: [12, 12] });
 const markerIcon = icon('#16a085');
@@ -16,7 +18,9 @@ function ClickSelect({ onChange }: { onChange?: (point: { lat: number; lng: numb
 
 export type MapPoint = { lat: number; lng: number; label?: string; kind?: 'pickup' | 'courier' | 'dropoff' };
 export function MapView({ center = { lat: 31.9539, lng: 35.9106 }, points = [], selected, onSelect, height = 320 }: { center?: { lat: number; lng: number }; points?: MapPoint[]; selected?: MapPoint; onSelect?: (point: MapPoint) => void; height?: number }) {
+  const { state } = useAppState();
   return (
+    <LocalizedContent language={state.language}>
     <div style={{ height, position: 'relative' }}>
       <MapContainer center={[center.lat, center.lng]} zoom={13} scrollWheelZoom style={{ height: '100%', width: '100%', borderRadius: 14 }}>
         <TileLayer attribution='&copy; OpenStreetMap contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
@@ -27,5 +31,6 @@ export function MapView({ center = { lat: 31.9539, lng: 35.9106 }, points = [], 
       </MapContainer>
       <span style={{ position: 'absolute', zIndex: 401, insetInlineStart: 10, bottom: 10, background: 'white', borderRadius: 8, padding: '6px 9px', fontSize: 11, color: '#64748b' }}>خريطة OpenStreetMap · مواقع تجريبية</span>
     </div>
+    </LocalizedContent>
   );
 }

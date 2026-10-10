@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Eye, EyeOff, Globe2, ShieldCheck, ShoppingBag, Store, Truck } from 'lucide-react';
 import { useAppState } from '../context/AppState';
 import { authenticateDemoUser, createDemoAccount, DemoAuthError, type DemoRole, type DemoUser } from '../services/demoAuth';
+import { LocalizedContent } from '../lib/localization';
 
 type Role = DemoRole;
 
@@ -188,6 +189,7 @@ export function LoginPage() {
   }
 
   return (
+    <LocalizedContent language={state.language}>
     <main className="auth-page" dir={english ? 'ltr' : 'rtl'}>
       <div className="auth-topbar">
         <Link className="auth-brand" to="/" aria-label={english ? 'Mashrouak home' : 'الرئيسية'}>
@@ -195,7 +197,7 @@ export function LoginPage() {
           <span>{english ? 'Mashrouak' : 'مشروعك'}</span>
         </Link>
         <button className="btn btn-outline auth-language" onClick={() => patch((draft) => { draft.language = english ? 'ar' : 'en'; })} type="button">
-          <Globe2 size={17} />{english ? 'عربي' : 'English'}
+          <Globe2 size={17} />{english ? 'Arabic' : 'English'}
         </button>
       </div>
 
@@ -343,5 +345,6 @@ export function LoginPage() {
         </p>
       </div>
     </main>
+    </LocalizedContent>
   );
 }

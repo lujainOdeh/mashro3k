@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { seedState } from '../data/seed';
+import { translateText } from '../lib/localization';
 
 const STORAGE_KEY = 'mashrouak-demo-v1';
 const SESSION_STORAGE_KEY = 'mashrouak-demo-session-v1';
@@ -97,7 +98,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
       fn(draft);
       return draft;
     }),
-    toast: setMessage,
+    toast: (text: string) => setMessage(translateText(state.language, text)),
     message,
     clearToast: () => setMessage(''),
   }), [state, message]);
