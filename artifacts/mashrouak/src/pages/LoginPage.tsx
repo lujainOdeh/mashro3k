@@ -191,7 +191,7 @@ export function LoginPage() {
     <main className="auth-page" dir={english ? 'ltr' : 'rtl'}>
       <div className="auth-topbar">
         <Link className="auth-brand" to="/" aria-label={english ? 'Mashrouak home' : 'الرئيسية'}>
-          <span className="auth-brand-mark">م</span>
+          <img src="/assets/logo.png" alt="" aria-hidden="true" width="50" height="50" className="auth-brand-logo" />
           <span>{english ? 'Mashrouak' : 'مشروعك'}</span>
         </Link>
         <button className="btn btn-outline auth-language" onClick={() => patch((draft) => { draft.language = english ? 'ar' : 'en'; })} type="button">

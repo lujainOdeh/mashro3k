@@ -604,6 +604,70 @@ a {
   color: #16a085;
 }
 
+.menu-toggle {
+  display: none;
+}
+
+.brand-logo {
+  display: block;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.navigation-drawer {
+  width: min(88vw, 360px);
+  max-width: none;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--border));
+}
+
+.drawer-nav {
+  display: grid;
+  gap: 6px;
+  padding: 22px 0;
+}
+
+.drawer-nav-link {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 13px;
+  border-radius: 11px;
+  color: hsl(var(--foreground));
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.drawer-nav-link:hover,
+.drawer-nav-link.is-active {
+  background: hsl(var(--secondary) / 0.12);
+  color: hsl(var(--secondary));
+}
+
+.drawer-cart-count {
+  margin-inline-start: auto;
+  color: hsl(var(--muted-foreground));
+  font-size: 13px;
+}
+
+.drawer-actions {
+  display: grid;
+  gap: 9px;
+  padding-top: 18px;
+  border-top: 1px solid hsl(var(--border));
+}
+
+.drawer-actions .btn {
+  justify-content: flex-start;
+  min-height: 42px;
+}
+
 .toast-stack {
   position: fixed;
   z-index: 10000;
@@ -666,15 +730,12 @@ a {
   text-decoration: none;
 }
 
-.auth-brand-mark {
-  display: grid;
-  width: 38px;
-  height: 38px;
-  place-items: center;
-  border-radius: 12px;
-  background: #172b4d;
-  color: white;
-  font-family: 'IBM Plex Sans Arabic', sans-serif;
+.auth-brand-logo {
+  width: 50px;
+  height: 50px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  border-radius: 14px;
 }
 
 .auth-language {
@@ -981,7 +1042,21 @@ a {
     width: min(100% - 28px, 560px);
   }
 
+  .header-utility {
+    display: none;
+  }
+
   .product-photo {
     height: 190px;
+  }
+}
+
+@media (max-width: 900px) {
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
   }
 }
